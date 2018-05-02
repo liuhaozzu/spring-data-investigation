@@ -1,0 +1,17 @@
+# 数据库访问配置
+# 主数据源，默认的
+spring:
+  profiles:
+    active: local
+# common info about the project
+info:
+  app:
+    name: spring-data-investigation
+    version: 1.0.0
+  build:
+    artifactId: @project.artifactId@
+    version: @project.version@
+# log4j2 configuration
+logging:
+  config: classpath:config/log4j2.xml
+

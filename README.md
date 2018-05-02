@@ -1,1 +1,1 @@
-# spring-data-investigation
+# spring-data-investigate

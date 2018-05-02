@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <property name="service_name">spring-data-investigation</property>
+        <property name="console_pattern">%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n</property>
+        <property name="log_pattern">[%d{MM-dd HH:mm:ss,SSS} %-5p] [%t] %c{2\} - %m%n%ex</property>
+        <property name="daily_pattern">[%d{MM-dd HH:mm:ss SSS} %-5level] [%t] %c{3} - %m%n%ex</property>
+        <property name="log_home">/opt/scf/log/spring-data-investigation</property>
+        <property name="age">2</property>
+        <property name="deltime">24h</property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>${daily_pattern}</Pattern>
+            </PatternLayout>
+        </Console>
+        <!-- dailyDebug begin -->
+        <RollingFile name="dailyDebug" fileName="${log_home}/${service_name}_debug.log"
+                     filePattern="${log_home}/${service_name}_debug.log.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout>
+                <Pattern>${daily_pattern}</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT"
+                                 onMismatch="DENY" />
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="${age}" >
+                <Delete basePath="${log_home}" maxDepth="1">
+                    <IfFileName glob="*-*.log" />
+                    <IfLastModified age="${deltime}" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <!-- dailyDebug end -->
+
+        <!-- dailyInfo begin -->
+        <RollingFile name="dailyInfo" fileName="${log_home}/${service_name}_info.log"
+                     filePattern="${log_home}/${service_name}_info.log.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout>
+                <Pattern>${daily_pattern}</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="${age}" >
+                <Delete basePath="${log_home}" maxDepth="1">
+                    <IfFileName glob="*-*.log" />
+                    <IfLastModified age="${deltime}" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <!-- dailyInfo end -->
+
+        <!-- dailyError begin -->
+        <RollingFile name="dailyError" fileName="${log_home}/${service_name}_error.log"
+                     filePattern="${log_home}/${service_name}_error.log.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout>
+                <Pattern>${daily_pattern}</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT"
+                                 onMismatch="DENY" />
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="${age}" >
+                <Delete basePath="${log_home}" maxDepth="1">
+                    <IfFileName glob="*-*.log" />
+                    <IfLastModified age="${deltime}" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <!-- dailyError end -->
+    </Appenders>
+
+    <Loggers>
+        <!--
+        <Root level="info">
+            <AppenderRef ref="dailyInfo" />
+            <AppenderRef ref="dailyError" />
+        </Root>
+        -->
+
+        <asyncRoot level="DEBUG" includeLocation="true">
+            <appender-ref ref="dailyInfo" />
+            <appender-ref ref="dailyError" />
+            <appender-ref ref="Console" />
+        </asyncRoot>
+    </Loggers>
+</Configuration>
