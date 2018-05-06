@@ -1,6 +1,10 @@
 package com.liuhaozzu.spring.data.investigation.entity;
 
 import com.google.gson.Gson;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -9,13 +13,17 @@ import javax.persistence.*;
  * Created by Administrator on 2018/4/27 0027.
  */
 @Entity
-@Component
 @Table(name = "customer")
+@DynamicInsert
+@DynamicUpdate
 public class Customer {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(generator = "myId")
+    @GenericGenerator(name = "myId", strategy = "com.liuhaozzu.spring.data.investigation.util.IdGenerator")
     private Long id;
-    @Column(name = "first_name",nullable = false, length = 5)
+
+    @Length(max = 5)
+    @Column(name = "first_name", nullable = false, length = 5)
     private String firstName;
     @Column(name = "last_name")
     private String lastName;

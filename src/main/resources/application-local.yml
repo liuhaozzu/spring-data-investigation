@@ -86,4 +86,7 @@ management:
   security:
     enabled: false
 
+validation:
+  enabled: false
+
 
