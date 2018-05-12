@@ -18,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 public class UpdateCustomerTest {
     @Autowired
-    private CustomerService customerService;
-    @Autowired
     private CustomerRepository customerRepo;
 
     @Autowired
@@ -27,16 +25,24 @@ public class UpdateCustomerTest {
 
     @Test
     public void testUpdateItemNum() {
-        Customer customer1 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf");
+        Customer customer1 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf").setId(1L);
+        Customer customer22 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf").setId(22L);
+        Customer customer33 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf").setId(33L);
+        Customer customer44 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf").setId(44L);
+        Customer customer55 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf").setId(55L);
         customer1.setFirstName("aaaaaaaa");
         try {
-            validationService.validate(customer1);
+            //validationService.validate(customer1);
             customerRepo.save(customer1);
+            customerRepo.save(customer22);
+            customerRepo.save(customer33);
+            customerRepo.save(customer44);
+            customerRepo.save(customer55);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
-            System.out.println(e.getCause().getLocalizedMessage());
+            //System.out.println(e.getCause().getLocalizedMessage());
             System.out.println(new Gson().toJson(e));
         }
 

@@ -23,7 +23,7 @@ public class RedisServiceTest {
     @Test
     public void testSetEx() {
         try {
-            redisService.setEx("abc", "test", 3, "testValue");
+            redisService.setEx("abc", "test", 3000, "testValue");
             LOGGER_HELPER.info(redisService.get("01", "test"));
             assertEquals(redisService.get("01","test"), "testValue");
         } catch (Exception e) {

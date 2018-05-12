@@ -4,12 +4,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/5/5 0005.
  */
 @Entity
-public class Item {
+public class Item{
     private long itemId;
     private String name;
     private String price;
