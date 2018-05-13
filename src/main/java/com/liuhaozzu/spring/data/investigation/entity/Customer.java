@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/4/27 0027.
@@ -17,23 +16,20 @@ import java.io.Serializable;
 @Table(name = "customer")
 @DynamicInsert
 @DynamicUpdate
-public class Customer implements Serializable{
-
-    private static final long serialVersionUID = -1;
-
+public class Customer {
     @Id
     @GeneratedValue(generator = "myId")
     @GenericGenerator(name = "myId", strategy = "com.liuhaozzu.spring.data.investigation.util.IdGenerator")
     private Long id;
 
-    //@Length(max = 5)
+    @Length(max = 5)
     @Column(name = "first_name", nullable = false, length = 5)
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "create_time")
-    private Long createTime;
+    private long createTime;
     private String mobile;
     private String habit;
 
@@ -72,11 +68,11 @@ public class Customer implements Serializable{
         return this;
     }
 
-    public Long getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public Customer setCreateTime(Long createTime) {
+    public Customer setCreateTime(long createTime) {
         this.createTime = createTime;
         return this;
     }
