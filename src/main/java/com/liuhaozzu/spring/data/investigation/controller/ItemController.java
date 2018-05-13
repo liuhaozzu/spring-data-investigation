@@ -20,7 +20,7 @@ public class ItemController {
     public ResponseEntity<Customer> transactionTest(Long customerId, Long itemId) {
         Customer customer = null;
         try {
-            customer = customerService.updateItemNum(customerId, itemId);
+            customer = customerService.findCustomerById(customerId);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/5/5 0005.
@@ -22,7 +23,7 @@ public class IdGenerator implements IdentifierGenerator{
         if (null != value) {
             return value;
         }
-        return count++;
+        return Math.abs(new Random().nextInt());
     }
 
     private Serializable getFieldValueByAnnotation(Object o, Class<Id> idClass) {

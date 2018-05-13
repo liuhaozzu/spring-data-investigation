@@ -69,15 +69,15 @@ spring:
         ddl-auto: update
       open-in-view: true
       show-sql: true
-  # redis
-  redis:
-    host: centos7-1
-    port: 6379
-    pool:
-      min-idle: 0
-      max-idle: 8
-      max-active: 8
-      max-wait: -1
+# redis
+redis:
+  host: centos7-1
+  port: 6379
+  pool:
+    min-idle: 0
+    max-idle: 8
+    max-active: 8
+    max-wait: -1
 # log4j2 configuration
 log4j:
   level: DEBUG
@@ -89,4 +89,24 @@ management:
 validation:
   enabled: false
 
-
+# jetcache
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+      limit: 100
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${redis.host}
+      port: ${redis.port}

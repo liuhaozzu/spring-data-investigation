@@ -26,35 +26,38 @@ public class UpdateCustomerTest {
     private ValidationService validationService;
 
     @Test
-    public void testUpdateItemNum() {
-        Customer customer1 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf");
-        customer1.setFirstName("aaaaaaaa");
+    public void findCustomerById() {
         try {
-            validationService.validate(customer1);
-            customerRepo.save(customer1);
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
+            System.out.println(customerService.findCustomerById(30L));
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
-            System.out.println(e.getCause().getLocalizedMessage());
-            System.out.println(new Gson().toJson(e));
         }
-
-        Customer customer2 = new Customer().setCreateTime(System.currentTimeMillis()).setMobile("adfadfadf");
-        customer2.setId(666L);
-        customer2.setFirstName("aaaaaaaa");
-        customerRepo.save(customer2);
-        customer2.setId(2L);
-        customer2.setMobile("aaaaaaaa");
-        customerRepo.save(customer2);
-
-        customer2.setMobile("bbbbbbbbbb");
-        customer2.setFirstName("aaaaaaaa");
-        customerRepo.save(customer2);
-
-        Customer customer3 = customerRepo.findOne(2L);
-        customer3.setFirstName("123456789");
-        customerRepo.save(customer3.setMobile("cccccccccc"));
     }
     @Test
     @Transactional
@@ -74,6 +77,8 @@ public class UpdateCustomerTest {
         System.out.println(a + "abc");
         System.out.println("abc"+a);
         System.out.println("abc "+a);
+        System.out.println(Long.toString(Long.MAX_VALUE).length());;
+        System.out.println(Long.toString(Long.MAX_VALUE));;
         //System.out.println("abc".concat(a));
     }
 }

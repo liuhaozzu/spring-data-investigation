@@ -18,6 +18,7 @@
         <dao.resources.dir>src/main/resources/</dao.resources.dir>
         <druid.version>1.1.9</druid.version>
         <mysql.jdbc.version>6.0.6</mysql.jdbc.version>
+        <jetcache.latest.version>2.5.0</jetcache.latest.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -26,6 +27,11 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
+            <version>${jetcache.latest.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
